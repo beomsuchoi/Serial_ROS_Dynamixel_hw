@@ -126,7 +126,7 @@ private:
 
     void updateDynamixel()
     {
-        // 가속도 프로파일 설정 (108번 주소)
+        //가속도
         uint8_t acceleration_buffer[16] = {0xFF, 0xFF, 0xFD, 0x00, 0x00, 0x09, 0x00, 0x03, 0x6C, 0x00};
         acceleration_buffer[10] = acc_ & 0xFF;
         acceleration_buffer[11] = (acc_ >> 8) & 0xFF;
@@ -138,7 +138,7 @@ private:
         serial_.write(acceleration_buffer, 16);
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
 
-        // 속도 프로파일 설정 (112번 주소)
+        // 속도 
         uint8_t velocity_buffer[16] = {0xFF, 0xFF, 0xFD, 0x00, 0x00, 0x09, 0x00, 0x03, 0x70, 0x00};
         velocity_buffer[10] = vel_ & 0xFF;
         velocity_buffer[11] = (vel_ >> 8) & 0xFF;
@@ -150,7 +150,7 @@ private:
         serial_.write(velocity_buffer, 16);
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
 
-        // 목표 위치 설정 (116번 주소)
+        // 목표 위치
         uint8_t position_buffer[16] = {0xFF, 0xFF, 0xFD, 0x00, 0x00, 0x09, 0x00, 0x03, 0x74, 0x00};
         position_buffer[10] = pos_ & 0xFF;
         position_buffer[11] = (pos_ >> 8) & 0xFF;
